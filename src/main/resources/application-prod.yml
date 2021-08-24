@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:"localhost"}:${DB_PORT:"3306"}/${DB_NAME:"arch"}?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ${DB_USER:"skeleton"}
+    password: ${DB_PASS:"password4skeleton"}
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+springdoc:
+  api-docs:
+    enabled: false

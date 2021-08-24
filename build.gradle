@@ -2,19 +2,129 @@ plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+
+	// gradle git helper
+	id "com.gorylenko.gradle-git-properties" version "2.2.4"
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
 
 repositories {
 	mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// base
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// devtools
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// swagger
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.9'
+	implementation 'org.springdoc:springdoc-openapi-webmvc-core:1.5.9'
+	implementation 'org.springdoc:springdoc-openapi-data-rest:1.5.9'
+	implementation 'io.swagger.core.v3:swagger-annotations:2.1.10'
+
+	// apache common
+	implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+	implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+
+	// lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// fastjson
+	implementation 'com.alibaba:fastjson:1.2.75'
+
+	// jwt
+	implementation 'com.auth0:java-jwt:3.14.0'
+
+	// MySQL
+	implementation "mysql:mysql-connector-java:8.0.23"
+
+}
+
+def getGitHash = { ->
+	def stdout = new ByteArrayOutputStream()
+	exec {
+		commandLine 'git', 'rev-parse', '--short', 'HEAD'
+		standardOutput = stdout
+	}
+	return stdout.toString().trim()
+}
+
+def getGitBranch = { ->
+	def stdout = new ByteArrayOutputStream()
+	exec {
+		commandLine 'git', 'symbolic-ref', '--short','-q', 'HEAD'
+		standardOutput = stdout
+	}
+	return stdout.toString().trim()
+}
+
+bootBuildImage{
+	doFirst {
+		processResources
+	}
+	docker {
+	}
+
+	/*
+	通过此方式添加代理
+	environment = [
+		"HTTP_PROXY" : "http://example.com:1080",
+		"HTTPS_PROXY": "http://example.com:1080",
+		"http_proxy" : "http://example.com:1080",
+		"https_proxy": "http://example.com:1080",
+	]
+	*/
+
+	// 在 ${project.name} 前面添加镜像仓库地址，实现推送到本地镜像仓库，例如 reg.example.com/group/${project.name}
+	imageName "${project.name}:${getGitBranch()}-${getGitHash}"
+	doLast {
+		exec {
+			commandLine 'docker', 'push',imageName
+		}
+	}
+}
+
+bootRun {
+
+}
+
+bootJar{
+	doFirst {
+		processResources
+	}
+}
+
+springBoot {
+	buildInfo()
+}
+
+processResources {
+	expand(project.properties)
 }
 
 test {
