@@ -25,7 +25,7 @@ public class PrevURP implements ApplicationRunner {
 
     @Override
     @Transactional
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         var admin = roleSvc.FindByName("admin");
         var common = roleSvc.FindByName("common");
         var audit = roleSvc.FindByName("audit");

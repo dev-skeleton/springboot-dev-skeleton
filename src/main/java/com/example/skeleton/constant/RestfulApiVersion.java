@@ -19,7 +19,7 @@ public class RestfulApiVersion {
 
     public static final String SYSTEM = "/system";
 
-    //对于白名单中的URL，不检查JWT和鉴权
+    // 对于白名单中的URL，不检查JWT和鉴权
     public static final List<Pair<HttpMethod, String>> ANT_WHITE_LIST = new ArrayList<>();
     public static final List<Pair<HttpMethod, String>> REG_WHITE_LIST = new ArrayList<>();
 

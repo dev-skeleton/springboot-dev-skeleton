@@ -18,10 +18,10 @@ import java.util.Date;
 @AllArgsConstructor
 @Schema(description = "管理员操作记录")
 @Table(name = "OPERATION_LOG")
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
 public class OperationLog implements AbstractEntity<OperationLog> {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 

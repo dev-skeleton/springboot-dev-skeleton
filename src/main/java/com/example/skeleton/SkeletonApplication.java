@@ -12,8 +12,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
 public class SkeletonApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SkeletonApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SkeletonApplication.class, args);
+    }
 
 }

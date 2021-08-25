@@ -25,11 +25,11 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "USERS")
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
 public class User implements UserDetails, AbstractEntity<User> {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 

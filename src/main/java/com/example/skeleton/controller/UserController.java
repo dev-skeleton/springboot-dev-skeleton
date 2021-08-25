@@ -1,7 +1,7 @@
 package com.example.skeleton.controller;
 
-import com.example.skeleton.constant.RestfulApiVersion;
 import com.example.skeleton.annotation.OperationLog;
+import com.example.skeleton.constant.RestfulApiVersion;
 import com.example.skeleton.model.dto.LoginInfo;
 import com.example.skeleton.model.dto.LoginResult;
 import com.example.skeleton.model.dto.UserCreate;

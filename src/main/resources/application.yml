@@ -2,6 +2,12 @@ server:
   port: 8080
   shutdown: graceful
 
+swagger:
+  contact:
+    mail: mail@example.com
+  license:
+    name: Private License
+
 spring:
   mvc:
     throw-exception-if-no-handler-found: true

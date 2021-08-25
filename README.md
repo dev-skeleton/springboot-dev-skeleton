@@ -16,6 +16,22 @@
 + IDE `com.example.skeleton.SkeletonApplication` to start application
 + Visit [Swagger UI](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config)
 
+## Git commit format
+
+- `feat` Add new features
+- `fix` bugfix
+- `style` code style, no logic change
+- `perf` performance/optimize
+- `refactor` refactor
+- `revert` revert commit
+- `test` test
+- `docs` document
+- `chore` dependencies or skeleton changes
+- `workflow` workflow improvement
+- `ci` continue integration
+- `types` type define
+- `wip` work in progress
+
 ## TIPS
 
 ### maven
