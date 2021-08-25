@@ -42,7 +42,7 @@ public class RbacSampleController {
         return Api.SimpleJsonResp(HttpStatus.OK, List.of(Pair.of("test", "ok")));
     }
 
-    @PreAuthorize("hasAnyAuthority(T(com.example.skeleton.constant.SecurityURP).RBAC_TEST)")
+    @PreAuthorize("hasAnyAuthority(T(com.example.skeleton.constant.SecurityURP).RBAC_SAMPLE)")
     @RequestMapping(value = "/test-permission", method = RequestMethod.GET)
     public ResponseEntity<?> HasTestAuthority() {
         return Api.SimpleJsonResp(HttpStatus.OK, List.of(Pair.of("test", "ok")));

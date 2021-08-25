@@ -14,7 +14,7 @@ public class SecurityURP {
     static public final String AUDIT_ROLE = "audit";
     static public final String COMMON_ROLE = "common";
 
-    static public final String RBAC_TEST = "/RBAC/TEST";
+    static public final String RBAC_SAMPLE = RestfulApiVersion.V1_SAMPLE + "/rbac";
 
     static public List<User> Users;
     static public List<Role> Roles;
@@ -28,7 +28,7 @@ public class SecurityURP {
     static public Role CommonRole;
 
     static {
-        RBACTestPermission = Permission.builder().phrase(RBAC_TEST).description("测试").build();
+        RBACTestPermission = Permission.builder().phrase(RBAC_SAMPLE).description("RBAC test").build();
 
         AdminRole = Role.builder().name(ADMIN_ROLE).permissions(Set.of(RBACTestPermission)).build();
         OpsRole = Role.builder().name(OPS_ROLE).build();
