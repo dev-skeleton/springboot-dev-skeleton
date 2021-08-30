@@ -12,6 +12,7 @@ spring:
   mvc:
     throw-exception-if-no-handler-found: true
   profiles:
+    # use -e spring_profiles_active="dev" in docker run to choose the right profile
     active: dev
   datasource:
     driver-class-name: 'com.mysql.cj.jdbc.Driver'
